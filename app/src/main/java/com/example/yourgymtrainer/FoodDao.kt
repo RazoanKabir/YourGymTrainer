@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FoodDao {
     @Upsert
-    suspend fun addFood()
+    suspend fun addFood(food: Food)
 
     @Delete
-    suspend fun deleteFood()
+    suspend fun deleteFood(food: Food)
 
     @Query("SELECT * FROM food ORDER BY foodName ASC")
     suspend fun getAllFoodByAlphabet(): Flow<List<Food>>
