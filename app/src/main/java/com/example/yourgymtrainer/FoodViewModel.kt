@@ -2,6 +2,7 @@ package com.example.yourgymtrainer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class FoodViewModel(private val dao: FoodDao) : ViewModel() {
     private val _sortType = MutableStateFlow(FoodSortType.GET_ALL)
     private val _foods = _sortType.flatMapLatest { sortType ->
@@ -88,7 +90,39 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                     isAddingFood = false
                 )}
             }
-            FoodEvent.SaveNewFood -> TODO()
+            FoodEvent.SaveNewFood -> {
+                val foodName = state.value.foodName
+                val foodProtein = state.value.foodProtein
+                val foodFat = state.value.foodFat
+                val foodCarbs = state.value.foodCarbs
+                val foodCalories = state.value.foodCalories
+                val fodAmountInGrams = state.value.foodAmountInGrams
+
+                if(foodName == null || foodProtein == null || foodFat == null || foodCarbs == null || foodCalories == null) {
+                    return
+                }
+
+                val food = Food(
+                    foodName = foodName,
+                    foodAmountInGrams = fodAmountInGrams,
+                    fatAmount = foodFat,
+                    carbsAmount = foodCarbs,
+                    proteinAmount = foodCalories,
+                    caloriesAmount = foodCalories
+                )
+                viewModelScope.launch {
+                    dao.addFood(food)
+                }
+                _state.update {it.copy(
+                    isAddingFood = false,
+                    foodName = "",
+                    foodProtein = 0,
+                    foodFat = 0,
+                    foodCarbs = 0,
+                    foodCalories = 0,
+                    foodAmountInGrams = 0
+                )}
+            }
         }
     }
 }

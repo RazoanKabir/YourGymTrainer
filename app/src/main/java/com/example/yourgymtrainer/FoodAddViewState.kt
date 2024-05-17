@@ -7,6 +7,7 @@ data class FoodAddViewState(
     val foodFat: Int = 0,
     val foodCarbs: Int = 0,
     val foodCalories: Int = 0,
+    val foodAmountInGrams: Int = 0,
     val isAddingFood: Boolean = false,
     val sortType: FoodSortType = FoodSortType.GET_ALL
 )

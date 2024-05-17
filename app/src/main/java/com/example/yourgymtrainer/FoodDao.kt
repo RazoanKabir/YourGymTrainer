@@ -15,17 +15,17 @@ interface FoodDao {
     suspend fun deleteFood(food: Food)
 
     @Query("SELECT * FROM food ORDER BY foodName ASC")
-    suspend fun getAllFoodByAlphabet(): Flow<List<Food>>
+    fun getAllFoodByAlphabet(): Flow<List<Food>>
 
     @Query("SELECT * FROM food ORDER BY proteinAmount DESC")
-    suspend fun getFoodByProtein(): Flow<List<Food>>
+    fun getFoodByProtein(): Flow<List<Food>>
 
     @Query("SELECT * FROM food ORDER BY fatAmount DESC")
-    suspend fun getFoodByFat(): Flow<List<Food>>
+    fun getFoodByFat(): Flow<List<Food>>
 
     @Query("SELECT * FROM food ORDER BY caloriesAmount DESC")
-    suspend fun getFoodByCalorie(): Flow<List<Food>>
+    fun getFoodByCalorie(): Flow<List<Food>>
 
     @Query("SELECT * FROM food ORDER BY carbsAmount DESC")
-    suspend fun getFoodByCarb(): Flow<List<Food>>
+    fun getFoodByCarb(): Flow<List<Food>>
 }
