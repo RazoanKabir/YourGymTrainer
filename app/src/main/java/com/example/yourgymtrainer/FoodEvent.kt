@@ -4,10 +4,10 @@ sealed interface FoodEvent {
     object SaveNewFood: FoodEvent
     data class SetSearchTerm(val searchTerm: String): FoodEvent
     data class SetFoodName(val foodName: String): FoodEvent
-    data class SetFoodProtein(val foodProtein: Int): FoodEvent
-    data class SetFoodFat(val foodFat: Int): FoodEvent
-    data class SetFoodCalories(val foodCalories: Int): FoodEvent
-    data class SetFoodCarbs(val foodCarbs: Int): FoodEvent
+    data class SetFoodProtein(val foodProtein: String): FoodEvent
+    data class SetFoodFat(val foodFat: String): FoodEvent
+    data class SetFoodCalories(val foodCalories: String): FoodEvent
+    data class SetFoodCarbs(val foodCarbs: String): FoodEvent
     data class SortFoods(val sortType: FoodSortType): FoodEvent
 //    data class SortFoodsByProtein(val sortType: FoodSortType): FoodEvent
 //    data class SortFoodsByFat(val sortType: FoodSortType): FoodEvent

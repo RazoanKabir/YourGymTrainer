@@ -85,7 +85,7 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                 val foodFat = state.value.foodFat
                 val foodCarbs = state.value.foodCarbs
                 val foodCalories = state.value.foodCalories
-                val fodAmountInGrams = state.value.foodAmountInGrams
+                val foodAmountInGrams = state.value.foodAmountInGrams
 
                 if(foodName == null || foodProtein == null || foodFat == null || foodCarbs == null || foodCalories == null) {
                     return
@@ -93,7 +93,7 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
 
                 val food = Food(
                     foodName = foodName,
-                    foodAmountInGrams = fodAmountInGrams,
+                    foodAmountInGrams = foodAmountInGrams,
                     fatAmount = foodFat,
                     carbsAmount = foodCarbs,
                     proteinAmount = foodCalories,
@@ -105,11 +105,11 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                 _state.update {it.copy(
                     isAddingFood = false,
                     foodName = "",
-                    foodProtein = 0,
-                    foodFat = 0,
-                    foodCarbs = 0,
-                    foodCalories = 0,
-                    foodAmountInGrams = 0
+                    foodProtein = "",
+                    foodFat = "",
+                    foodCarbs = "",
+                    foodCalories = "",
+                    foodAmountInGrams = ""
                 )}
             }
 

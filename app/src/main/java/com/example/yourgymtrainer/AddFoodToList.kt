@@ -36,16 +36,17 @@ fun AddFoodToList(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier:
                 TextField(
                     value = state.foodProtein.toString(),
                     onValueChange = {
-                        onEvent(FoodEvent.SetFoodName(it))
+                        onEvent(FoodEvent.SetFoodProtein(it))
                     },
                     placeholder = {
                         Text(text = "Enter Protein")
-                    }
+                    },
+
                 )
                 TextField(
                     value = state.foodCarbs.toString(),
                     onValueChange = {
-                        onEvent(FoodEvent.SetFoodName(it))
+                        onEvent(FoodEvent.SetFoodCarbs(it))
                     },
                     placeholder = {
                         Text(text = "Enter Carb")
@@ -54,7 +55,7 @@ fun AddFoodToList(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier:
                 TextField(
                     value = state.foodFat.toString(),
                     onValueChange = {
-                        onEvent(FoodEvent.SetFoodName(it))
+                        onEvent(FoodEvent.SetFoodFat(it))
                     },
                     placeholder = {
                         Text(text = "Enter Fat")
@@ -63,7 +64,7 @@ fun AddFoodToList(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier:
                 TextField(
                     value = state.foodCalories.toString(),
                     onValueChange = {
-                        onEvent(FoodEvent.SetFoodName(it))
+                        onEvent(FoodEvent.SetFoodCalories(it))
                     },
                     placeholder = {
                         Text(text = "Enter Calories")
@@ -83,5 +84,4 @@ fun AddFoodToList(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier:
             }
         }
     )
-
 }
