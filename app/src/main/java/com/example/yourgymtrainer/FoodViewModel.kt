@@ -64,22 +64,11 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                     foodProtein = event.foodProtein
                 )}
             }
-            is FoodEvent.SetSearchTerm -> TODO()
-            is FoodEvent.SortFoodsByAlphabetical -> {
+
+            is FoodEvent.SortFoods -> {
                 _sortType.value = event.sortType
             }
-            is FoodEvent.SortFoodsByCalories -> {
-                _sortType.value = event.sortType
-            }
-            is FoodEvent.SortFoodsByCarbs -> {
-                _sortType.value = event.sortType
-            }
-            is FoodEvent.SortFoodsByFat -> {
-                _sortType.value = event.sortType
-            }
-            is FoodEvent.SortFoodsByProtein -> {
-                _sortType.value = event.sortType
-            }
+
             FoodEvent.ShowFoodAddDialog -> {
                 _state.update {it.copy(
                   isAddingFood = true
@@ -123,6 +112,30 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                     foodAmountInGrams = 0
                 )}
             }
+
+            FoodEvent.HideFoodIntakeDialog -> {
+                _state.update {it.copy(
+                    isHavingFood = false
+                )}
+            }
+            FoodEvent.ShowFoodIntakeDialog -> {
+                _state.update {it.copy(
+                    isHavingFood = true
+                )}
+            }
+
+            FoodEvent.HideFoodFilterDialog -> {
+                _state.update {it.copy(
+                    isShowingFilter = false
+                )}
+            }
+            FoodEvent.ShowFoodFilterDialog -> {
+                _state.update {it.copy(
+                    isShowingFilter = true
+                )}
+            }
+
+            is FoodEvent.SetSearchTerm -> TODO()
         }
     }
 }

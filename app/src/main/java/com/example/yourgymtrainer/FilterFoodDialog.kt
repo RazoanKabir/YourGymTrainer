@@ -17,9 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ScrollableRadioButtonAlertDialog(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier: Modifier = Modifier) {
+fun FilterFoodDialog(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier: Modifier = Modifier) {
     AlertDialog(
-        onDismissRequest = { /* Handle dialog dismissal */ },
+        modifier = modifier,
+        onDismissRequest = {
+            onEvent(FoodEvent.HideFoodFilterDialog)
+        },
         title = { Text(text = "Filter") },
         text = {
                LazyColumn(
