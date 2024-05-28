@@ -65,6 +65,12 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                 )}
             }
 
+            is FoodEvent.SetFoodAmountInGrams -> {
+                _state.update {it.copy(
+                    foodAmountInGrams = event.foodAmountInGrams
+                )}
+            }
+
             is FoodEvent.SortFoods -> {
                 _sortType.value = event.sortType
             }
@@ -87,17 +93,17 @@ class FoodViewModel(private val dao: FoodDao) : ViewModel() {
                 val foodCalories = state.value.foodCalories
                 val foodAmountInGrams = state.value.foodAmountInGrams
 
-                if(foodName == null || foodProtein == null || foodFat == null || foodCarbs == null || foodCalories == null) {
+                if(foodName == null || foodProtein == null || foodFat == null || foodCarbs == null || foodCalories == null || foodAmountInGrams == null) {
                     return
                 }
 
                 val food = Food(
                     foodName = foodName,
-                    foodAmountInGrams = foodAmountInGrams,
-                    fatAmount = foodFat,
-                    carbsAmount = foodCarbs,
-                    proteinAmount = foodCalories,
-                    caloriesAmount = foodCalories
+                    foodAmount = foodAmountInGrams,
+                    proteinAmount = foodProtein.toFloat(),
+                    fatAmount = foodFat.toFloat(),
+                    caloriesAmount = foodCalories.toFloat(),
+                    carbsAmount = foodCarbs.toFloat()
                 )
                 viewModelScope.launch {
                     dao.addFood(food)

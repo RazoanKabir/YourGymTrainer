@@ -1,6 +1,5 @@
 package com.example.yourgymtrainer
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -67,7 +66,7 @@ fun DietScreen(state: FoodAddViewState, onEvent: (FoodEvent) -> Unit) {
                     Column(
                         modifier = Modifier.weight(1f)
                     ) {
-                       Text(text = food.foodName, fontSize = 20.sp)
+                       Text(text = "${food.foodName} (${food.foodAmount}) ", fontSize = 20.sp)
                        Text(text = "P = ${food.proteinAmount}, C = ${food.carbsAmount}, F = ${food.fatAmount}, cal = ${food.caloriesAmount}",
                            fontSize = 14.sp)
                     }

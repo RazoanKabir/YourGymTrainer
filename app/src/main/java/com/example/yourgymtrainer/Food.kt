@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 @Entity
 data class Food(
     val foodName: String,
-    val foodAmountInGrams: String,
-    val proteinAmount: String,
-    val fatAmount: String,
-    val caloriesAmount: String,
-    val carbsAmount: String,
+    val foodAmount: String,
+    val proteinAmount: Float,
+    val fatAmount: Float,
+    val caloriesAmount: Float,
+    val carbsAmount: Float,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0
 )

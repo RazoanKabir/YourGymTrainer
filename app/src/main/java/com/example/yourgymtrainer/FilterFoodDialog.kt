@@ -25,31 +25,29 @@ fun FilterFoodDialog(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifi
         },
         title = { Text(text = "Filter") },
         text = {
-               LazyColumn(
-                   contentPadding = PaddingValues(16.dp),
-                   verticalArrangement = Arrangement.spacedBy(8.dp)
-               ) {
-                   item {
-                       Column(
-                           modifier = Modifier.verticalScroll(rememberScrollState())
-                       ) {
-                            FoodSortType.values().forEach {sortType->
-                                Row(
-                                    modifier = Modifier.clickable {
+            LazyColumn(
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                item {
+                    Column {
+                        FoodSortType.values().forEach {sortType->
+                            Row(
+                                modifier = Modifier.clickable {
+                                    onEvent(FoodEvent.SortFoods(sortType))
+                                },
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                RadioButton(selected = state.sortType == sortType,
+                                    onClick = {
                                         onEvent(FoodEvent.SortFoods(sortType))
-                                    },
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    RadioButton(selected = state.sortType == sortType,
-                                        onClick = { 
-                                            onEvent(FoodEvent.SortFoods(sortType))
-                                        })
-                                    Text(text = sortType.name)
-                                }
+                                    })
+                                Text(text = sortType.name)
                             }
-                       }
-                   }
-               }
+                        }
+                    }
+                }
+            }
         },
         confirmButton = {}
     )

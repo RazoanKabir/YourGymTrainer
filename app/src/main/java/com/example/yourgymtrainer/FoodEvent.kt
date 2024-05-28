@@ -8,6 +8,7 @@ sealed interface FoodEvent {
     data class SetFoodFat(val foodFat: String): FoodEvent
     data class SetFoodCalories(val foodCalories: String): FoodEvent
     data class SetFoodCarbs(val foodCarbs: String): FoodEvent
+    data class SetFoodAmountInGrams(val foodAmountInGrams: String): FoodEvent
     data class SortFoods(val sortType: FoodSortType): FoodEvent
 //    data class SortFoodsByProtein(val sortType: FoodSortType): FoodEvent
 //    data class SortFoodsByFat(val sortType: FoodSortType): FoodEvent

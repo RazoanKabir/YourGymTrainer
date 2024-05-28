@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -21,55 +22,68 @@ fun AddFoodToList(state: FoodAddViewState, onEvent: (FoodEvent)->Unit, modifier:
         },
         title = { Text(text = "Add Food")},
         text = {
-            Column(
+            LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                TextField(
-                    value = state.foodName,
-                    onValueChange = {
-                        onEvent(FoodEvent.SetFoodName(it))
-                    },
-                    placeholder = {
-                        Text(text = "Enter Food name")
-                    }
-                )
-                TextField(
-                    value = state.foodProtein.toString(),
-                    onValueChange = {
-                        onEvent(FoodEvent.SetFoodProtein(it))
-                    },
-                    placeholder = {
-                        Text(text = "Enter Protein")
-                    },
+                item {
+                    Column {
+                        TextField(
+                            value = state.foodName,
+                            onValueChange = {
+                                onEvent(FoodEvent.SetFoodName(it))
+                            },
+                            placeholder = {
+                                Text(text = "Enter Food name")
+                            }
+                        )
+                        TextField(
+                            value = state.foodAmountInGrams,
+                            onValueChange = {
+                                onEvent(FoodEvent.SetFoodAmountInGrams(it))
+                            },
+                            placeholder = {
+                                Text(text = "Enter Food Amount in grams/pcs")
+                            }
+                        )
+                        TextField(
+                            value = state.foodProtein,
+                            onValueChange = {
+                                onEvent(FoodEvent.SetFoodProtein(it))
+                            },
+                            placeholder = {
+                                Text(text = "Enter Protein")
+                            },
 
-                )
-                TextField(
-                    value = state.foodCarbs.toString(),
-                    onValueChange = {
-                        onEvent(FoodEvent.SetFoodCarbs(it))
-                    },
-                    placeholder = {
-                        Text(text = "Enter Carb")
+                            )
+                        TextField(
+                            value = state.foodCarbs,
+                            onValueChange = {
+                                onEvent(FoodEvent.SetFoodCarbs(it))
+                            },
+                            placeholder = {
+                                Text(text = "Enter Carb")
+                            }
+                        )
+                        TextField(
+                            value = state.foodFat,
+                            onValueChange = {
+                                onEvent(FoodEvent.SetFoodFat(it))
+                            },
+                            placeholder = {
+                                Text(text = "Enter Fat")
+                            }
+                        )
+                        TextField(
+                            value = state.foodCalories,
+                            onValueChange = {
+                                onEvent(FoodEvent.SetFoodCalories(it))
+                            },
+                            placeholder = {
+                                Text(text = "Enter Calories")
+                            }
+                        )
                     }
-                )
-                TextField(
-                    value = state.foodFat.toString(),
-                    onValueChange = {
-                        onEvent(FoodEvent.SetFoodFat(it))
-                    },
-                    placeholder = {
-                        Text(text = "Enter Fat")
-                    }
-                )
-                TextField(
-                    value = state.foodCalories.toString(),
-                    onValueChange = {
-                        onEvent(FoodEvent.SetFoodCalories(it))
-                    },
-                    placeholder = {
-                        Text(text = "Enter Calories")
-                    }
-                )
+                }
             }
         },
         confirmButton = {
